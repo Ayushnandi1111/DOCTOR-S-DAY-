@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY DOCTOR'S DAY! - কবিতা শাফলার</title>
+    <!-- Load Tailwind CSS for beautiful, responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for a clean, professional look (Doctor's Day Theme) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Baloo+Da+2:wght@400;600;700&display=swap');
+        
+        body {
+            /* Using Baloo Da 2 for a friendly, modern Bengali font */
+            font-family: 'Baloo Da 2', 'Inter', sans-serif;
+            /* Calming Light Blue/White Gradient Theme for care and health */
+            background: linear-gradient(135deg, #f0f9ff 0%, #b3e5fc 100%); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            margin: 0;
+            overflow: hidden; 
+            position: relative;
+        }
+        
+        /* Define fade animation for poems */
+        .fade-out {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .fade-in {
+            opacity: 1;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        /* --- CSS for the Slow Movement (Drift) --- */
+        @keyframes slow-drift {
+            /* Slight movement for a gentle, floating effect */
+            0% { transform: translate(0px, 0px) rotate(0deg); }
+            50% { transform: translate(-8px, 6px) rotate(-0.3deg); }
+            100% { transform: translate(0px, 0px) rotate(0deg); }
+        }
+
+        #poem-box {
+            /* Apply the very slow, infinite, and alternating drift animation */
+            animation: slow-drift 35s infinite alternate ease-in-out; 
+            /* Deep Blue text for professionalism */
+            color: #1e3a8a; 
+        }
+    </style>
+</head>
+<body class="selection:bg-teal-600 selection:text-white">
+
+    <div id="poem-box" class="w-full max-w-4xl p-8 md:p-12 lg:p-16 bg-white shadow-2xl rounded-3xl border-4 border-teal-500 transform transition duration-500 hover:scale-[1.01] text-center">
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-teal-700 mb-6 tracking-tight">
+            চিকিৎসক দিবস শুভ হোক! 🩺
+        </h1>
+        <p class="text-xl text-gray-700 mb-10 font-semibold">
+            সকল স্বাস্থ্যকর্মী ও চিকিৎসকদের জানাই সশ্রদ্ধ প্রণাম ও কৃতজ্ঞতা 💙
+        </p>
+
+        <!-- Poem Display Area -->
+        <blockquote id="poem-text" class="text-2xl sm:text-3xl font-medium text-gray-800 italic leading-relaxed mb-6 h-48 flex items-center justify-center">
+            <!-- Initial content will be overwritten by JS -->
+            "তুমি জীবনদাতা, তুমিই ত্রাতা, তোমার হাতেই নতুন দিনের আলো।"
+        </blockquote>
+        
+        <!-- Source Display Area -->
+        <footer class="text-center">
+            <cite id="poem-source" class="text-lg font-bold text-blue-500 not-italic block mt-4">
+                — কৃতজ্ঞ জনতা
+            </cite>
+        </footer>
+
+    </div>
+
+    <!-- Page Footer with Copyright Notice -->
+    <footer class="absolute bottom-4 left-0 right-0 text-center text-sm text-gray-600 opacity-75">
+        &copy; 2025 AYUSH NANDI ---চিকিৎসক ও স্বাস্থ্যকর্মীদের প্রতি নিবেদন ✨
+    </footer>
+
+    <script>
+        // --- THE POEM ARRAY (Doctor's Day - Bangla & English) ---
+        // এই তালিকাটি চিকিৎসক দিবস এবং স্বাস্থ্যকর্মীদের জন্য কবিতা/পংক্তি/উক্তি ধারণ করে।
+        const poems = [
+            // --- Bengali Quotes ---
+            {
+                poem: "তুমি জীবনদাতা, তুমিই ত্রাতা, তোমার হাতেই নতুন দিনের আলো। ⚕️",
+                source: "কৃতজ্ঞ জনতা"
+            },
+            {
+                poem: "যখন সবাই হার মানে, তুমিই ভরসা দাও, তোমার জ্ঞানই আমাদের বাঁচায়।",
+                source: "জীবনের আশির্বাদ"
+            },
+            {
+                poem: "তোমার প্রতিটি নিঃস্বার্থ সেবা, আমাদের জন্য এক নতুন জীবন।",
+                source: "অজ্ঞাত কবি"
+            },
+            {
+                poem: "দিনের পর দিন জেগে থাকা তোমার পরিশ্রম, আমাদের সুস্থতার কারণ।",
+                source: "শ্রদ্ধা"
+            },
+            {
+                poem: "তোমার হাতেই জন্ম নেয় স্বস্তি, তোমার কথাতেই শান্তি।",
+                source: "প্রেরণা"
+            },
+            {
+                poem: "ভয় পেয়ো না, আমি তোমার পাশে আছি— তোমার এই কথাই যেন মহৌষধ।",
+                source: "একজন রোগী"
+            },
+            {
+                poem: "চিকিৎসক তুমি, সেবা তোমার ধর্ম, মানবতাই তোমার শ্রেষ্ঠ কর্ম।",
+                source: "প্রচলিত বাণী"
+            },
+            {
+                poem: "তোমার সংকল্প, তোমার ধৈর্য— কঠিন সময়েও তুমি অবিচল।",
+                source: "কৃতজ্ঞতা"
+            },
+            {
+                poem: "চিকিৎসার আলোয় দূর হোক পৃথিবীর সকল অন্ধকার। ✨",
+                source: "শুভ কামনা"
+            },
+            // --- English Quotes (Requested) ---
+            {
+                poem: "The best doctor gives the least medicine.",
+                source: "Benjamin Franklin"
+            },
+            {
+                poem: "Wherever the art of medicine is loved, there is also a love of humanity. 💙",
+                source: "Hippocrates"
+            },
+            {
+                poem: "To cure sometimes, to relieve often, to comfort always.",
+                source: "Hippocrates"
+            },
+            {
+                poem: "The art of medicine consists of amusing the patient while nature cures the disease. 🩺",
+                source: "Voltaire"
+            },
+            {
+                poem: "A good physician treats the disease, but the great physician treats the patient who has the disease.",
+                source: "William Osler"
+            },
+            {
+                poem: "The greatest discovery in medicine is that nature heals.",
+                source: "Paracelsus"
+            },
+            {
+                poem: "People pay the doctor for his trouble; for his kindness, they still remain in his debt.",
+                source: "Seneca"
+            },
+            {
+                poem: "Medicine is a science of uncertainty and an art of probability.",
+                source: "William Osler"
+            }
+            // Add hundreds more quotes here to reach 1000+ entries!
+        ];
+
+        // --- JAVASCRIPT LOGIC (Remains the same for shuffling) ---
+
+        const poemTextElement = document.getElementById('poem-text');
+        const poemSourceElement = document.getElementById('poem-source');
+        let currentPoemIndex = -1;
+
+        /**
+         * Selects a random poem that is different from the current one.
+         * @returns {object} A poem object {poem, source}.
+         */
+        function getRandomPoem() {
+            if (poems.length === 0) {
+                console.error("কবিতা তালিকা খালি।");
+                return { poem: "তালিকা খালি।", source: "ত্রুটি" };
+            }
+            
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * poems.length);
+            } while (poems.length > 1 && newIndex === currentPoemIndex);
+            
+            currentPoemIndex = newIndex;
+            return poems[newIndex];
+        }
+
+        /**
+         * Displays the new poem with a smooth fade effect.
+         */
+        function displayNewPoem() {
+            // 1. Start fade-out by adding the class
+            poemTextElement.classList.add('fade-out');
+            poemSourceElement.classList.add('fade-out');
+
+            // Wait for the fade-out to complete (1500ms from CSS transition)
+            setTimeout(() => {
+                const newPoem = getRandomPoem();
+
+                // 2. Update the content while hidden
+                poemTextElement.textContent = `"${newPoem.poem}"`;
+                poemSourceElement.textContent = `— ${newPoem.source}`;
+
+                // 3. Remove fade-out and add fade-in to reveal
+                poemTextElement.classList.remove('fade-out');
+                poemSourceElement.classList.remove('fade-out');
+                
+                // Ensure fade-in state is active 
+                poemTextElement.classList.add('fade-in');
+                poemSourceElement.classList.add('fade-in');
+
+                // Clean up the temporary class after the transition
+                setTimeout(() => {
+                     poemTextElement.classList.remove('fade-in');
+                     poemSourceElement.classList.remove('fade-in');
+                }, 1500);
+
+
+            }, 1500); // Wait 1.5 seconds for fade-out
+        }
+
+        // Set the initial poem on load
+        window.onload = function() {
+            displayNewPoem(); // Display the first poem
+            
+            // Set the interval to shuffle poems every 10 seconds (10000 milliseconds)
+            setInterval(displayNewPoem, 10000); 
+        };
+
+    </script>
+
+</body>
+</html>
